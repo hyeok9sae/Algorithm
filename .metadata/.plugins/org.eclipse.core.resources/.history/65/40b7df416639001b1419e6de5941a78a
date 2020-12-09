@@ -1,0 +1,43 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
+
+public class Main_10828 {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st;
+		
+		int N = Integer.parseInt(br.readLine());
+		String msg;
+		int num;
+		
+		for (int i = 0; i < N; i++) {
+			st = new StringTokenizer(br.readLine());
+			msg = st.nextToken();
+			
+			if (msg.equals("push")) {
+				num = Integer.parseInt(st.nextToken());
+				bw.write(msg+" "+num+"\n");
+			} else if (msg.equals("pop")) {
+				bw.write(msg+"\n");
+			} else if (msg.equals("size")) {
+				bw.write(msg+"\n");
+			} else if (msg.equals("empty")) {
+				bw.write(msg+"\n");
+			} else if (msg.equals("top")) {
+				bw.write(msg+"\n");
+			}
+		}
+		br.close();
+		bw.flush();
+		bw.close();
+	}
+}
+/*
+ * etc	#10828
+ * http://boj.kr/10828
+ */
