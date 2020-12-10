@@ -4,32 +4,35 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Main_9012 {
+public class Main_10799 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		int T = Integer.parseInt(br.readLine());
-		for (int t = 0; t < T; t++) {
-			String s = br.readLine();
-			Stack st = new Stack(s.length());
-			for (int i = 0; i < s.length(); i++) {
-				char c = s.charAt(i);
-				if (c == '(') {
-					st.push(c);
-				} else if (c == ')') {
-					if (st.top() == '(') {
-						st.pop();
-					} else {
-						st.push(c);
-					}
+		
+		String s = br.readLine();
+		Stack st = new Stack(s.length());
+		char b = 0;
+		int ans = 0;
+		
+		for (int i = 0; i < s.length(); i++) {
+			if (i != 0) {
+				b = s.charAt(i-1);
+			}
+			char c = s.charAt(i);
+			if(c == '(') {
+				st.push(c);
+			} else {
+				if (b == '(') {
+					st.pop();
+					ans += st.size();
+				} else {
+					st.pop();
+					ans++;
 				}
 			}
-			if (st.empty() == 1) {
-				bw.write("YES\n");
-			} else {
-				bw.write("NO\n");
-			}
 		}
+		
+		bw.write(ans+"");
 		br.close();
 		bw.flush();
 		bw.close();
@@ -41,7 +44,7 @@ public class Main_9012 {
 		public Stack(int num) {
 			this.arr = new char[num];
 		}
-
+		
 		public void push(char brk) {
 			arr[top+1] = brk;
 			top++;
@@ -73,9 +76,10 @@ public class Main_9012 {
 			}
 			return arr[top];
 		}
+		
 	}
 }
 /*
- * etc #9012 
- * http://boj.kr/9012
+ *	etc #10799 
+ * 	http://boj.kr/10799
  */
