@@ -1,48 +1,43 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
-class Data {
-    String name;
-    int korean;
-    int english;
-    int math;
-    public Data(String name, int korean, int english, int math) {
-        this.name = name;
-        this.korean = korean;
-        this.english = english;
-        this.math = math;
-    }
-}
-
-class Main {
+public class Main {
+ 
     public static void main(String[] args) throws IOException {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));    
-        int count = Integer.parseInt(in.readLine());
-        ArrayList<Data> arrayList = new ArrayList<>();
-        for(int i=0; i<count; ++i) {
-            String[] input = in.readLine().split(" ");
-            arrayList.add(new Data(input[0], Integer.parseInt(input[1]), Integer.parseInt(input[2]), Integer.parseInt(input[3])));
-        }
-        Collections.sort(arrayList, new Comparator<Data>() {
-        	@Override
-			public int compare(Data a, Data b) {
-				if (a.korean > b.korean) {
-					return -1;
-				} else if (a.korean == b.korean) {
-					if (a.english == b.english) {
-						if (a.math == b.math) {
-							return a.name.compareTo(b.name);
-						}
-						return Integer.compare(Integer.valueOf(b.math), Integer.valueOf(a.math));
-					}
-					return Integer.compare(Integer.valueOf(a.english), Integer.valueOf(b.english));
-				} else {
-					return 1;
+ 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+ 
+        String s = "";
+ 
+        while ((s = br.readLine()) != null ) {
+ 
+            int[] arr = new int[4];
+ 
+            for (int i = 0; i < s.length(); i++) {
+            	char c = s.charAt(i);
+                // 소문자
+            	if ((int)c >= 97 && (int)c <= 122) {
+					arr[0]++;
+				}  if ((int)c >= 65 && (int)c <= 90) {
+					arr[1]++;
+				}  if ((int)c >= 48 && (int)c <= 57) {
+					arr[2]++;
+				}  if ((int)c == 32) {
+					arr[3]++;
 				}
-			}
-        });
-        for(int i=0; i<count; ++i) {
-            System.out.println(arrayList.get(i).name);
+ 
+            }
+ 
+            bw.write(arr[0]+" "+arr[1]+" "+arr[2]+" "+arr[3]+"\n");
+            
+            bw.flush();
         }
+        br.close();
+        bw.close();
     }
+ 
 }
