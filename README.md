@@ -13,5 +13,7 @@
 ### 정렬
 - counting sort, merge sort
 
+### EOF
 
+- BufferedReader로 읽고 eof 판별할 때 while문안에서 bw.flush와 bw.close 위치 주의!
 
