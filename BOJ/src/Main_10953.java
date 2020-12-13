@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main_10953_ref {
+public class Main_10953 {
 //	static char[] c; 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

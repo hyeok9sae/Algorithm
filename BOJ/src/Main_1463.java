@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main_1463_ref {
+public class Main_1463 {
 	static int[] dp;
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
