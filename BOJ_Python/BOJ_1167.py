@@ -2,31 +2,28 @@
 from collections import deque
 
 def bfs(V):
-    distance = 0
+    distance, vertax = 0, 0
+    visited = [False for _ in range(N+1)]
     visited[V] = True
-    deq = deque([])
-    deq.append((V, 0))
+    deq = deque([(V, 0)])
     while deq:
         p, p_dist = deq.popleft()
-        for i in range(len(matrix[p])):
-            if not visited[matrix[p][i]]:
-                visited[matrix[p][i]] = True
-                deq.append((matrix[p][i], p_dist + dist[p][matrix[p][i]]))
-                if p_dist + dist[p][matrix[p][i]] > distance:
-                    distance = p_dist + dist[p][matrix[p][i]]             
-    return distance
+        for i in dic[p]:
+            if not visited[i[0]]:
+                visited[i[0]] = True
+                deq.append((i[0], p_dist + i[1]))
+                if distance < p_dist + i[1]:
+                    distance, vertax = p_dist + i[1], i[0]        
+    return distance, vertax
 
 N = int(input())
-matrix = [[] for _ in range(N+1)]
-dist = [[0]*(N+1) for _ in range(N+1)]
-ans = []
+# matrix = [[] for _ in range(N+1)]
+dic = {}
 for _ in range(N):
     lst = list(map(int, input().split()))
+    dic[lst[0]] = []
     for i in range(1, len(lst)-1, 2):
-        matrix[lst[0]].append(lst[i])
-        matrix[lst[i]].append(lst[0])
-        dist[lst[0]][lst[i]] = dist[lst[i]][lst[0]] = lst[i+1]
-for i in range(1, N+1):
-    visited = [False for _ in range(N+1)]
-    ans.append(bfs(i))
-print(max(ans))   
+        dic[lst[0]].append((lst[i], lst[i+1]))
+v1 = bfs(1)[1]
+ans = bfs(v1)[0]
+print(ans)
