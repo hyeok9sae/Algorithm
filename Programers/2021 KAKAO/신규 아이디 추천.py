@@ -1,4 +1,3 @@
-# 신규 아이디 추천
 def solution(new_id):
     # 1단계
     answer = new_id.lower()
