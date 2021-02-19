@@ -9,5 +9,5 @@ def solution(clothes):
         answer *= len(dic[i])+1
     return answer - 1
 
-clothes = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
-solution(clothes)
+# clothes = [["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]
+# solution(clothes)
