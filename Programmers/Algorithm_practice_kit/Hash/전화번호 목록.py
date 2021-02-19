@@ -9,8 +9,8 @@ def solution(phone_book):
             tmp += j
             if tmp in dic and tmp != i:
                 answer = False
-    print(answer)
+    # print(answer)
     return answer
 
-phone_book = ["119", "97644223", "1195524421"]
-solution(phone_book)
+# phone_book = ["119", "97644223", "1195524421"]
+# solution(phone_book)
