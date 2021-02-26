@@ -17,9 +17,9 @@ def solution(priorities, location):
             if ans[1] == location:
                 answer = count
 
-    print(answer)
+    # print(answer)
     return answer
 
-priorities = [1,1,9,1,1,1]
-location = 0
-solution(priorities, location)
+# priorities = [1,1,9,1,1,1]
+# location = 0
+# solution(priorities, location)
