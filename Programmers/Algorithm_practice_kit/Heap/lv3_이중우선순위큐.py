@@ -19,8 +19,8 @@ def solution(operations):
     else:
         answer.append(0)
         answer.append(0)
-    print(answer)
+    # print(answer)
     return answer
 
-operations = ["I 7", "I 5", "I -5", "D -1"]
-solution(operations)
+# operations = ["I 7", "I 5", "I -5", "D -1"]
+# solution(operations)
