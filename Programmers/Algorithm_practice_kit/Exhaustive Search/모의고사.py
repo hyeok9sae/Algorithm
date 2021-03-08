@@ -16,9 +16,9 @@ def solution(answers):
         if max(tmp) == tmp[i]:
             answer.append(i+1)
     answer.sort()
-    print(answer)
+    # print(answer)
 
     return answer
 
-answers = [1,3,2,4,2]
-solution(answers)
+# answers = [1,3,2,4,2]
+# solution(answers)
