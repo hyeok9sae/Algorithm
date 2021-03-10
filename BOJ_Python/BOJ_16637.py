@@ -21,18 +21,25 @@ def cal(num1, num2, oper):
     
 N = int(input())
 equa = input()
-lst, i = [], 0
-deq = deque()
+lst, max_answer = [], []
 solve(0, False, [])
-while i < N:
-    if i % 2 == 0:
-        deq.append(int(equa[i]))
-    else:
-        if lst[i//2] == 1:
-            oper = equa[i]
-            deq.append(cal(deq.pop(), int(equa[i+1]), oper))
-            i += 1
+for tc in lst:
+    i, deq = 0, deque()
+    # print(tc)
+    while i < N:
+        if i % 2 == 0:
+            deq.append(int(equa[i]))
         else:
-            deq.append(equa[i])
-    i += 1
-print(deq)
+            if tc[i//2] == 1:
+                oper = equa[i]
+                deq.append(cal(deq.pop(), int(equa[i+1]), oper))
+                i += 1
+            else:
+                deq.append(equa[i])
+        i += 1
+    answer = deq.popleft()
+    while deq:
+        oper = deq.popleft()
+        answer = cal(answer, deq.popleft(), oper)
+    max_answer.append(answer)
+print(max(max_answer))
