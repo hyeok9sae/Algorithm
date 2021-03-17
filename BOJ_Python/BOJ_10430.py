@@ -1,6 +1,3 @@
 # 나머지
-A, B, C = map(int, input().strip().split())
-print( (A+B) % C )
-print( ( (A%C) + (B%C) ) % C )
-print( (A*B) % C )
-print( ( (A%C) * (B%C) ) % C)
+A, B, C = map(int, input().split())
+print((A+B)%C, (A+B)%C, (A*B)%C, (A*B)%C, sep='\n')
