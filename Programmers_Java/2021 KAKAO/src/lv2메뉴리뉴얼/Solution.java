@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Solution {
     public static void main(String[] args) {
-        String[] orders = {"XYZ", "XWY", "WXA"};
-        int[] course = {2, 3, 4};
+        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        int[] course = {2,3,4};
         String[] answer = solution(orders, course);
     }
     static HashMap<String, Integer> map = new HashMap<>();
