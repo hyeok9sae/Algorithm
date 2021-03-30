@@ -1,44 +1,63 @@
 package lv2메뉴리뉴얼;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Solution {
-    static HashMap<String, Integer> map;
     public static void main(String[] args) {
-        String[] orders = {"ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"};
+        String[] orders = {"XYZ", "XWY", "WXA"};
         int[] course = {2, 3, 4};
         String[] answer = solution(orders, course);
     }
+    static HashMap<String, Integer> map = new HashMap<>();
+
     public static String[] solution(String[] orders, int[] course){
         String[] answer = {};
-        map= new HashMap<>();
         for (int i = 0; i < orders.length; i++){
-            char[] tmp = new char[orders[i].length()];
-            boolean[] visited = new boolean[orders[i].length()];
-            for (int j = 0; j < orders[i].length(); j++){
-                tmp[j] = orders[i].charAt(j);
-            }
-            for (int r = 0; r < course.length; r++){
-                comb(tmp, visited, 0, course[r], map);
+            char[] tmp = orders[i].toCharArray();
+            Arrays.sort(tmp);
+            boolean[] visited = new boolean[tmp.length];
+            for (int j = 0; j < course.length; j++){
+                comb(tmp, visited, 0, course[j]);
             }
         }
+        List<String> keySetList = new ArrayList<>(map.keySet());
+        Collections.sort(keySetList, (o1, o2) -> (map.get(o2).compareTo(map.get(o1))));
+        List<String> ansList = new ArrayList<>();
+        for (int i = 0; i < course.length; i++){
+            int max = 0;
+            for (String s : keySetList){
+                if(s.length() == course[i] && map.get(s) >= 2){
+                    if (max <= map.get(s)){
+                        max = map.get(s);
+                        ansList.add(s);
+                    }
+                }
+            }
+        }
+        Collections.sort(ansList);
+//        System.out.println(ansList);
+        answer = new String[ansList.size()];
+        ansList.toArray(answer);
         return answer;
     }
-    public static void comb(char[] arr, boolean[] visited, int start, int r, HashMap<String, Integer> map){
+    public static void comb(char[] tmp, boolean[] visited, int start, int r){
         if (r == 0){
-            for (int i = 0; i < arr.length; i++){
+            String tmpKey = "";
+            for (int i = 0; i < tmp.length; i++){
                 if (visited[i] == true){
-                    System.out.print(arr[i] + " ");
+//                    System.out.print(tmp[i]+" ");
+                    tmpKey += tmp[i];
                 }
-                System.out.println();
             }
+            map.put(tmpKey, map.getOrDefault(tmpKey, 0) + 1);
+//            System.out.println();
             return;
-        } else{
-            for (int i = start; i < arr.length; i++){
-                visited[i] = true;
-                comb(arr, visited, i+1, r-1, map);
-                visited[i] = false;
-            }
         }
+        for (int i = start; i < tmp.length; i++){
+            visited[i] = true;
+            comb(tmp, visited,i+1, r-1);
+            visited[i] = false;
+        }
+
     }
 }
