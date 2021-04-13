@@ -1,19 +1,29 @@
 # 암호 만들기
-def comb(n, r):
+def comb(start, n, r):
     if r == 0:
-        print(*tmp, sep=" ")
+        if check(tmp):
+            print(*tmp, sep="")
         return
-    for i in range(n):
-        if not visited[i]:
-            tmp.append(lst[i])
-            visited[i] = True
-            comb(n, r-1)
-            tmp.pop()
-            visited[i] = False
+    for i in range(start, n):
+        tmp.append(lst[i])
+        comb(i+1, n, r-1) 
+        tmp.pop()   
+
+def check(arr):
+    cnt1, cnt2 = 0, 0
+    for i in arr:
+        if i in vowel:
+            cnt1 += 1
+        else:
+            cnt2 += 1
+    if cnt1 >= 1 and cnt2 >= 2:
+        return True
+    else:
+        return False
 
 L, C = map(int, input().split())
-lst = list(map(str, input().split()))
-vowel = ['a', 'e', 'i', 'o', 'u']
+lst = list(input().split())
+lst.sort()
 tmp = []
-visited = [False]*C
-comb(C, L)
+vowel = ['a', 'e', 'i', 'o', 'u']
+comb(0, C, L)
