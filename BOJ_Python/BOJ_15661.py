@@ -1,12 +1,16 @@
-# 스타트와 링크
+# 링크와 스타트
 def solve(idx, first, second):
-    if len(first) == N/2 and len(second) == N/2:
+    if idx == N and len(first) != 0 and len(second) != 0:
         res_first, res_second = 0, 0
         for i in range(len(first)):
             for j in range(len(first)):
                 if i == j:
                     continue
                 res_first += matrix[first[i]][first[j]]
+        for i in range(len(second)):
+            for j in range(len(second)):
+                if i == j:
+                    continue
                 res_second += matrix[second[i]][second[j]]
         res = abs(res_first-res_second)
         global min
