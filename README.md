@@ -3,4 +3,4 @@
 📌 1일 1문제 풀기
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?logo=java&logoColor=white)
-![Python](https://img.shields.io/badge/Python-ED8B00?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-2B5B84?logo=python&logoColor=white)
