@@ -2,6 +2,5 @@
 
 📌 1일 1문제 풀기
 
-📌 [Python](https://github.com/hyeok9sae/algorithm/tree/master/BOJ_Python)
-
-📌 [Java](https://github.com/hyeok9sae/algorithm/tree/master/BOJ_Java/src)
+![Java](https://img.shields.io/badge/Java-ED8B00?logo=java&logoColor=white)
+![Python](https://img.shields.io/badge/Python-ED8B00?logo=python&logoColor=white)
