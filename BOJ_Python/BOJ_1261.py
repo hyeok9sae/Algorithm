@@ -11,20 +11,18 @@ def bfs(row, col):
     deq = deque([(row, col, 0)])
     while deq:
         y, x, cnt = deq.popleft()
-        print(y, x, cnt)
         if y == N-1 and x == M-1:
-            global min
-            if min > cnt:
-                min = cnt
+            print(cnt)
+            return
         for i in range(4):
             ny, nx = y + dy[i], x + dx[i]
             if not is_in(ny, nx):
                 continue
-            # if visited[ny][nx]:
-            #     continue
-            # visited[ny][nx] = True
+            if visited[ny][nx]:
+                continue
+            visited[ny][nx] = True
             if matrix[ny][nx] == '0':
-                deq.append((ny, nx, cnt))
+                deq.appendleft((ny, nx, cnt))
             else:
                 deq.append((ny, nx, cnt+1))
 
@@ -34,6 +32,4 @@ for _ in range(N):
     matrix.append(list(input()))
 dy, dx = [0, -1, 0, 1], [-1, 0, 1, 0]
 visited = [[False]*M for _ in range(N)]
-min = float('inf')
 bfs(0, 0)
-print(min)
