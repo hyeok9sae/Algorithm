@@ -11,22 +11,14 @@ def bfs(row, col):
     deq = deque([(row, col, 0)])
     while deq:
         y, x, cnt = deq.popleft()
-        print(y, x, cnt)
-        if y == N-1 and x == M-1:
-            global min
-            if min > cnt:
-                min = cnt
         for i in range(4):
             ny, nx = y + dy[i], x + dx[i]
             if not is_in(ny, nx):
                 continue
-            # if visited[ny][nx]:
-            #     continue
-            # visited[ny][nx] = True
-            if matrix[ny][nx] == '0':
-                deq.append((ny, nx, cnt))
-            else:
-                deq.append((ny, nx, cnt+1))
+            if visited[ny][nx]:
+                continue
+            visited[ny][nx] = True
+            deq.append((ny, nx, cnt+1))
 
 M, N = map(int, input().split())
 matrix = []
