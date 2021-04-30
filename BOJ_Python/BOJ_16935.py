@@ -1,64 +1,59 @@
 # 배열 돌리기 3
-def solve(num):
-    tmp_N, tmp_M = len(A), len(A[0])
-    if num == 1:
-        tmp = [[0]*tmp_M for _ in range(tmp_N)]
-        for i in range(tmp_N):
-            for j in range(tmp_M):
-                tmp[i][j] = A[tmp_N-i-1][j]
+def solve(r):
+    tmp = [[0]*m for _ in range(n)]
+    if r == 1:
+        for i in range(n):
+            for j in range(m):
+                tmp[i][j] = A[n-i-1][j]
         return tmp
-    elif num == 2:
-        tmp = [[0]*tmp_M for _ in range(tmp_N)]
-        for i in range(tmp_N):
-            for j in range(tmp_M):
-                tmp[i][j] = A[i][tmp_M-j-1]
+    elif r == 2:
+        for i in range(n):
+            for j in range(m):
+                tmp[i][j] = A[i][m-j-1]
         return tmp
-    elif num == 3:
-        tmp = [[0]*tmp_N for _ in range(tmp_M)]
-        for i in range(tmp_M):
-            for j in range(tmp_N):
-                tmp[i][j] = A[tmp_N-j-1][i]
+    elif r == 3:
+        for i in range(n):
+            for j in range(m):
+                tmp[i][j] = A[m-j-1][i]
         return tmp
-    elif num == 4:
-        tmp = [[0]*tmp_N for _ in range(tmp_M)]
-        for i in range(tmp_M):
-            for j in range(tmp_N):
-                tmp[i][j] = A[j][tmp_M-i-1]
+    elif r == 4:
+        for i in range(n):
+            for j in range(m):
+                tmp[i][j] = A[j][n-i-1]
         return tmp
-    elif num == 5:
-        tmp = [[0]*tmp_M for _ in range(tmp_N)]
-        for i in range(tmp_N):
-            for j in range(tmp_M):
-                if i < tmp_N/2 and j < tmp_M/2:
-                    tmp[i][j] = A[i+N//2][j]
-                elif i < tmp_N/2 and j >= tmp_M/2:
-                    tmp[i][j] = A[i][j-tmp_M//2]
-                elif i >= tmp_N/2 and j >= tmp_M/2:
-                    tmp[i][j] = A[i-tmp_N//2][j]
-                elif i >= tmp_N/2 and j < tmp_M/2:
-                    tmp[i][j] = A[i][j+tmp_M//2]
+    elif r == 5:
+        for i in range(n):
+            for j in range(m):
+                if i < n/2 and j < m/2:
+                    tmp[i][j] = A[i+n//2][j]
+                elif i < n/2 and j >= m/2:
+                    tmp[i][j] = A[i][j-m//2]
+                elif i >= n/2 and j >= m/2:
+                    tmp[i][j] = A[i-n//2][j]
+                elif i >= n/2 and j < m/2:
+                    tmp[i][j] = A[i][j+m//2]
         return tmp
-    elif num == 6:
-        tmp = [[0]*tmp_M for _ in range(tmp_N)]
-        for i in range(tmp_N):
-            for j in range(tmp_M):
-                if i < tmp_N/2 and j < tmp_M/2:
-                    tmp[i][j] = A[i][j+tmp_M//2]
-                elif i < tmp_N/2 and j >= tmp_M/2:
-                    tmp[i][j] = A[i+tmp_N//2][j]
-                elif i >= tmp_N/2 and j >= tmp_M/2:
-                    tmp[i][j] = A[i][j-tmp_M//2]
-                elif i >= tmp_N/2 and j < tmp_M/2:
-                    tmp[i][j] = A[i-tmp_N//2][j]
+    elif r == 6:
+        for i in range(n):
+            for j in range(m):
+                if i < n/2 and j < m/2:
+                    tmp[i][j] = A[i][j+m//2]
+                elif i < n/2 and j >= m/2:
+                    tmp[i][j] = A[i+n//2][j]
+                elif i >= n/2 and j >= m/2:
+                    tmp[i][j] = A[i][j-m//2]
+                elif i >= n/2 and j < m/2:
+                    tmp[i][j] = A[i-n//2][j]
         return tmp
 
-
-N, M, R = map(int, input().split())
-A = list(list(map(int, input().split())) for _ in range(N))
+n, m, R = map(int, input().split())
+A = list(list(map(int, input().split())) for _ in range(n))
 R_lst = map(int, input().split())
 for i in R_lst:
-    if i <= 0 or i > 6:
-        continue
+    if i == 3 or i == 4:
+        tmp = n
+        n = m
+        m = tmp
     A = solve(i)
 for i in A:
     print(*i)
