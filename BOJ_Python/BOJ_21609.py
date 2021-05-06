@@ -34,6 +34,7 @@ def bfs(row, col):
                 rainbow += 1
             visited[ny][nx] = True
             deq.append((ny, nx))
+    print(lst)
     return rainbow, len(lst), lst, row, col
 
 N, M = map(int, input().split())
@@ -43,13 +44,13 @@ ans = 0
 for _ in range(M):
     
     max_size, max_rain, max_tmp, std_row, std_col = 0, 0, [], 0, 0
+    visited = [[False]*N for _ in range(N)]
     for i in range(N):
         for j in range(N):
             if matrix[i][j] <= -1:
                 continue
             if matrix[i][j] == 0:
                 continue
-            visited = [[False]*N for _ in range(N)]
             rain_cnt, size, tmp, row, col = bfs(i, j)
             # print(rain_cnt, size, tmp, row, col)
             if max_size < size:
@@ -80,7 +81,6 @@ for _ in range(M):
                             std_row = row
                             std_col = col
     score = 0
-    print(max_tmp)
     print(*matrix, sep="\n")
     for i, j in max_tmp:
         matrix[i][j] = -2
