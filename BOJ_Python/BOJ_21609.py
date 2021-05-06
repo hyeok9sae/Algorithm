@@ -9,12 +9,19 @@ def is_in(ny, nx):
 def bfs(row, col):
     number = matrix[row][col]
     visited[row][col] = True
-    deq = deque([(row, col, 0)])
+    deq = deque([(row, col)])
     rainbow = 0
-    lst = []
+    lst = deque([])
+    max_y, max_x = 0, 0
     while deq:
-        y, x, cnt = deq.popleft()
-        lst.append((y, x))
+        y, x = deq.popleft()
+        if max_y < y:
+            lst.append((y, x))
+        elif max_y == y:
+            if max_x < x:
+                lst.append((y, x))
+        else:
+            lst.appendleft((y, x))
         for i in range(4):
             ny, nx = y + dy[i], x + dx[i]
             if not is_in(ny, nx):
@@ -26,7 +33,7 @@ def bfs(row, col):
             if matrix[ny][nx] == 0:
                 rainbow += 1
             visited[ny][nx] = True
-            deq.append((ny, nx, cnt+1))
+            deq.append((ny, nx))
     return rainbow, len(lst), lst, row, col
 
 N, M = map(int, input().split())
@@ -74,6 +81,7 @@ for _ in range(M):
                             std_col = col
     score = 0
     print(max_tmp)
+    print(*matrix, sep="\n")
     for i, j in max_tmp:
         matrix[i][j] = -2
         score += 1
