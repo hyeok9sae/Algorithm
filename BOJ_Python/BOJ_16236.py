@@ -56,6 +56,7 @@ def bfs(row, col, shark_size):
     fish.sort(key=lambda x:x[1])
     fish.sort(key=lambda x:x[0])
     fish.sort(key=lambda x:x[2])
+    # fish.sort(key=lambda x:(x[1],x[0],x[2]))
     if len(fish) == 0:
         return -1, -1, -1
     return fish[0]
