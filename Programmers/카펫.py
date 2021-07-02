@@ -2,7 +2,7 @@
 def solution(brown, yellow):
     answer = []
     new_brown = brown // 2 + 2
-    for i in range(1, new_brown):
+    for i in range(3, new_brown):
         row = i
         col = new_brown - i
         if row > col:
