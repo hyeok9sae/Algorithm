@@ -3,19 +3,10 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         tmp = ""
         for i in s:
-            if 0 <= ord(i) <= 127:
+            if '0' <= i <= '9' or 'a' <= i <= 'z' or 'A' <= i <= 'Z':
                 tmp += i
         temp = tmp.lower()
-        flag = True
-        i, j = 0, len(temp)-1
-        while i < j:
-            if temp[i] != temp[j]:
-                flag = False
-                break
-            i += 1
-            j -= 1
-        print(flag)
-        return flag
+        return temp == temp[::-1]
 
-S = Solution()
-S.isPalindrome("0P")
+# S = Solution()
+# S.isPalindrome("0P")
