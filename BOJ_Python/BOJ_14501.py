@@ -1,22 +1,19 @@
 # 퇴사
-def solve(start, sum):
-    global ans
-    if start == N+1:
-        if ans < sum:
-            ans = sum
+def dfs(idx, res):
+    if idx > N:
+        global answer
+        if answer < res:
+            answer = res
         return
-    if start > N+1:
-        return
-
-    solve(start+1, sum)
-    solve(start+T[start], sum+P[start])
+    dfs(idx+1, res)
+    if idx+lst[idx][0] <= N+1:
+        dfs(idx+lst[idx][0], res+lst[idx][1])
 
 N = int(input())
-T, P = [0], [0]
+lst = [(0, 0)]
 for _ in range(N):
-    a, b = map(int, input().split())
-    T.append(a)
-    P.append(b)
-ans = float('-inf')
-solve(1, 0)
-print(ans)
+    T, P = map(int, input().split())
+    lst.append((T, P))
+answer = 0
+dfs(1, 0)
+print(answer)
